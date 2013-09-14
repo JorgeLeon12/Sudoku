@@ -3,15 +3,28 @@ public class Casilla
    private int valor;
 //   private boolean inicial[][] = {};
    private static final boolean[][] inicial ={
-   		{true,true,false,true,false,false,false,true,true},
-   		{false,true,false,true,true,true,false,false,false},
-		{false,false,false,false,false,false,false,true,false},
-		{true,false,false,true,false,false,true,false,false},
-		{false,true,false,true,false,true,false,true,false},
-		{false,false,true,false,false,true,false,false,true},
-		{false,true,false,false,false,false,false,false,false},
-		{false,false,false,true,true,true,false,true,false},
-		{true,true,false,false,false,true,false,true,true}};
+   		{false,false,true,false,true,true,true,false,false},
+   		{true,false,true,false,false,false,true,true,true},
+		{true,true,true,true,true,true,true,false,true},
+		{false,true,true,false,true,true,false,true,true},
+		{true,false,true,false,true,false,true,false,true},
+		{true,true,false,true,true,false,true,true,false},
+		{true,false,true,true,true,true,true,true,true},
+		{true,true,true,false,false,false,true,false,true},
+		{false,false,true,true,true,false,true,false,false}};
+   
+   
+   private static final boolean[][] utilizado ={
+   		{false,false,false,false,false,false,false,false,false},
+   		{false,false,false,false,false,false,false,false,false},
+		{false,false,false,false,false,false,false,false,false},
+		{false,false,false,false,false,false,false,false,false},
+		{false,false,false,false,false,false,false,false,false},
+		{false,false,false,false,false,false,false,false,false},
+		{false,false,false,false,false,false,false,false,false},
+		{false,false,false,false,false,false,false,false,false},
+		{false,false,false,false,false,false,false,false,false}};
+
    private static final int[][] intvalor ={
    {5,3,0,6,0,0,0,9,8},
    {0,7,0,1,9,5,0,0,0},
