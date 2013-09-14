@@ -5,7 +5,7 @@ public class Casilla
    private boolean utilizado;
    
 
-   private static final int[] intvalor={0,1,2,3,4,5,6,7,8,9};    
+   private static final int[] cas={0,1,2,3,4,5,6,7,8,9};    
 
         public Casilla()
           {
@@ -18,9 +18,15 @@ public class Casilla
           {
           this.valor=valor;
           this.inicial=uno;
-          this.utilizadp=true;
+          this.utilizado=true;
 
           }
+     
+       public void setValor(int num,boolean num2)
+         {
+        
+ 
+         }
        
 
 
