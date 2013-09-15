@@ -4,40 +4,45 @@ import java.util.*;
 public class Sudoku{
 	public static void main(String[] args){
 	//Imprimir Tablero
-	
+	int sector, celda = 10000, coorX2, coorY2;
 	int coorX = Integer.parseInt(JOptionPane.showInputDialog("Introduce coordenadas en X: "));
 	int coorY = Integer.parseInt(JOptionPane.showInputDialog("Introduce coordenadas en Y: "));
 	int numeroIntro = Integer.parseInt(JOptionPane.showInputDialog("Introduce el Numero a introducir: "));
+	System.out.println(coorX + " - " + coorY);//solo de Pruebas, Borrar!!
 	
 	if((coorX > 0 && coorX < 4) && (coorY > 0 && coorY < 4)){
-		int sector = 0;
+		sector = 0;
 	}
 	else if((coorX > 3 && coorX < 7) && (coorY > 0 && coorY < 4)){
-		int sector = 1;
+		sector = 1;
 	}
 	else if((coorX > 6 && coorX < 10) && (coorY > 0 && coorY < 4)){
-		int sector = 2;
+		sector = 2;
 	}
 	
 	
 	else if((coorX > 0 && coorX < 4) && (coorY > 3 && coorY < 7)){
-		int sector = 3;
+		sector = 3;
 	}
 	else if((coorX > 3 && coorX < 7) && (coorY > 3 && coorY < 7)){
-		int sector = 4;
+		sector = 4;
 	}
 	else if((coorX > 6 && coorX < 10) && (coorY > 3 && coorY < 7)){
-		int sector = 5;
+		sector = 5;
 	}
 	
 	else if((coorX > 0 && coorX < 4) && (coorY > 6 && coorY < 10)){
-		int sector = 6;
+		sector = 6;
 	}
 	else if((coorX > 3 && coorX < 7) && (coorY > 6 && coorY < 10)){
-		int sector = 7;
+		sector = 7;
 	}
 	else if((coorX > 6 && coorX < 10) && (coorY > 6 && coorY < 10)){
-		int sector = 8;
+		sector = 8;
+	}
+	else{
+		System.out.print("Error! Numero Invalido!");
+		sector = 9;
 	}
 	
 	if(coorX > 3){
@@ -46,25 +51,39 @@ public class Sudoku{
 			coorX2 = coorX2 - 3;
 		}
 	}
+	else{
+		coorX2 = coorX;
+	}
 	if(coorY > 3){
 		coorY2 = coorY - 3;
 		if(coorY2 > 3){
 			coorY2 = coorY2 - 3;
 		}
 	}
+	else{
+		coorY2 = coorY;
+	}
 	
-	if(coorY2 == 2){
-		int celda = coorX2 + 3;
+	if(coorY2 == 1){
+		celda = coorX2 - 1;
+	}
+	else if(coorY2 == 2){
+		celda = coorX2 + 2;
 	}
 	else if(coorY2 == 3){
-		int celda = coorX2 + 3;
+		celda = coorX2 + 5;
 	}
 	
 	
-	inconsistencia(int sector, int celda, int numero){
+	System.out.println("Cuadro: " + sector);//solo de Pruebas, Borrar!!
+	System.out.println("Posicion: " + celda);//solo de Pruebas, Borrar!!
+	int[][] Cas = {{5,3,0,6,0,0,0,9,8},{0,7,0,1,9,5,0,0,0},{0,0,0,0,0,0,0,6,0},{8,0,0,4,0,0,7,0,0},{0,6,0,8,0,3,0,2,0},{0,0,3,0,0,1,0,0,6},{0,6,0,0,0,0,0,0,0},{0,0,0,4,1,9,0,8,0},{2,8,0,0,0,5,0,7,9}};//solo de Pruebas, Borrar!!
+	
+	System.out.print("Numero en Casilla: " + Cas[sector][celda]);//solo de Pruebas, Borrar!!
+/*	inconsistencia(int sector, int celda, int numero){
 		int Buscar = 0;
 		
-		for(int i = this.celda; i < 9;i++){//corregir condicion
+		for(int i = this.celda; i < 9;i= i + 3){//corregir condicion
 			Buscar = this.Casilla[sector][i];
 			if(Buscar == numero){
 				return true;
@@ -72,6 +91,7 @@ public class Sudoku{
 		}
 		return true;
 	}
+*/	
 //	if inco = true
 //		serValor{
 //			valorar en 9 casillas 
@@ -83,7 +103,7 @@ public class Sudoku{
 //		}
 	
 	
-	System.out.print(coorX);
+//	System.out.print(coorX);
 //	setValor(coorX, coorY, numeroIntro);
 		
 	}
