@@ -84,7 +84,7 @@ public class Sudoku{
 		for(int i = 0; i < 9; i++){
 			if(Cas[sector][i] == /*this.*/numeroIntro){
 				System.out.println("Inconsistencia: EL NUMERO " + /*this.*/numeroIntro +" YA ESTA EN ESTA SECCION, INTENTA CON OTRO NUMERO.");
-				//return false;
+				//return true;
 			}
 		}
 		//Vertical
@@ -158,9 +158,9 @@ public class Sudoku{
 			}
 		}
 		//if(error == true){
-			//return false;
-		//}else{
 			//return true;
+		//}else{
+			//return false;
 		//}
 	//}
 	}
