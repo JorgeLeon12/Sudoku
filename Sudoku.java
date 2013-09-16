@@ -4,7 +4,7 @@ import java.util.*;
 public class Sudoku{
 	public static void main(String[] args){
 	//Imprimir Tablero
-	int sector, celda = 10000, coorX2, coorY2;
+	int sector, celda = 10000, coorX2, coorY2, sector2;
 	int coorX = Integer.parseInt(JOptionPane.showInputDialog("Introduce coordenadas en X: "));
 	int coorY = Integer.parseInt(JOptionPane.showInputDialog("Introduce coordenadas en Y: "));
 	int numeroIntro = Integer.parseInt(JOptionPane.showInputDialog("Introduce el Numero a introducir: "));
@@ -79,19 +79,35 @@ public class Sudoku{
 	System.out.println("Posicion: " + celda);//solo de Pruebas, Borrar!!
 	int[][] Cas = {{5,3,0,6,0,0,0,9,8},{0,7,0,1,9,5,0,0,0},{0,0,0,0,0,0,0,6,0},{8,0,0,4,0,0,7,0,0},{0,6,0,8,0,3,0,2,0},{0,0,3,0,0,1,0,0,6},{0,6,0,0,0,0,0,0,0},{0,0,0,4,1,9,0,8,0},{2,8,0,0,0,5,0,7,9}};//solo de Pruebas, Borrar!!
 	
-	System.out.print("Numero en Casilla: " + Cas[sector][celda]);//solo de Pruebas, Borrar!!
-/*	inconsistencia(int sector, int celda, int numero){
+	System.out.println("Numero en Casilla: " + Cas[sector][celda]);//solo de Pruebas, Borrar!!
+	
+	//inconsistencia(int sector, int celda/*, int numero*/){
 		int Buscar = 0;
-		
-		for(int i = this.celda; i < 9;i= i + 3){//corregir condicion
-			Buscar = this.Casilla[sector][i];
-			if(Buscar == numero){
-				return true;
+		if(sector > 3){
+			sector2 = sector - 3;
+			if(sector > 3){
+				sector2 = sector2 - 3;
+			}
+		}else{
+			sector2 = sector;
+		}
+		for(int i = sector2; i < 9; i = i + 3){
+			for(int j = cfelda; j < 9; j = j + 3){
+				if(Cas[i][j] == /*this.*/numeroIntro){
+					//return false;
+					System.out.println("Inconsistencia: NUMERO REPETIDO!");
+				}
+			}
+			for(int j = celda; j >= 0 ; j = j - 3){
+				if(Cas[i][j] == /*this.*/numeroIntro){
+					//return false;
+					System.out.println("Inconsistencia: NUMERO REPETIDO!");
+				}
 			}
 		}
-		return true;
-	}
-*/	
+		//return true;
+	//}
+	
 //	if inco = true
 //		serValor{
 //			valorar en 9 casillas 
