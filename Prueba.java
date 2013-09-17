@@ -1,11 +1,12 @@
 import javax.swing.*;
 import java.util.*;
+
 public class Prueba {
-    private boolean FuncionSuma(int sector, int celda/*, int numero, int[][] Cas*/){
+    private boolean inconsistencia(int sector, int celda, int numero, int[][] Cas){
 		int i, j, sector2, celda2;
 		boolean error = false;
 /*		int[][] Cas = this.Cas;*/
-		int numero = this.numero;
+//		int numero = this.numeroIntro;
 		//Dentro de su cuadro
 		for(i = 0; i < 9; i++){
 			if(Cas[sector][i] == numero){
@@ -166,6 +167,6 @@ public class Prueba {
 		int[][] Cas = {{5,3,0,6,0,0,0,9,8},{0,7,0,1,9,5,0,0,0},{0,0,0,0,0,0,0,6,0},{8,0,0,4,0,0,7,0,0},{0,6,0,8,0,3,0,2,0},{0,0,3,0,0,1,0,0,6},{0,6,0,0,0,0,0,0,0},{0,0,0,4,1,9,0,8,0},{2,8,0,0,0,5,0,7,9}};//solo de Pruebas, Borrar!!
 	//
         Prueba C = new Prueba();
-        System.out.println(C.FuncionSuma(sector, celda/*, numeroIntro, Cas*/));
+        System.out.println(C.inconsistencia(sector, celda, numeroIntro, Cas));
     }
 }
