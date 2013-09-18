@@ -5,6 +5,28 @@ public class Sudoku {
 	//La asignación como tal no funciona a no ser que estés declarando el array, en todo caso, necesitarías establecerlo como instancia y luego llenarlo por otros medios....
 	private int [][] Cas = {{5,3,0,6,0,0,0,9,8},{0,7,0,1,9,5,0,0,0},{0,0,0,0,0,0,0,6,0},{8,0,0,4,0,0,7,0,0},{0,6,0,8,0,3,0,2,0},{0,0,3,0,0,1,0,0,6},{0,6,0,0,0,0,0,0,0},{0,0,0,4,1,9,0,8,0},{2,8,0,0,0,5,0,7,9}};//prueba!
 	//private int [][] Cas = {{5,3,1,6,1,1,1,9,8},{1,7,1,1,9,5,1,1,1},{1,1,1,1,1,1,1,6,1},{8,1,1,4,1,1,7,1,1},{1,6,1,8,1,3,1,2,1},{1,1,3,1,1,1,1,1,6},{1,6,1,1,1,1,1,1,1},{1,1,1,4,1,9,1,8,1},{2,8,1,1,1,5,1,7,9}};//para calar si gano o no
+	private boolean [][] inicial ={
+   		{false,false,true,false,true,true,true,false,false},
+   		{true,false,true,false,false,false,true,true,true},
+		{true,true,true,true,true,true,true,false,true},
+		{false,true,true,false,true,true,false,true,true},
+		{true,false,true,false,true,false,true,false,true},
+		{true,true,false,true,true,false,true,true,false},
+		{true,false,true,true,true,true,true,true,true},
+		{true,true,true,false,false,false,true,false,true},
+		{false,false,true,true,true,false,true,false,false}};
+		
+   private boolean[][] utilizado ={
+   		{false,false,false,false,false,false,false,false,false},
+   		{false,false,false,false,false,false,false,false,false},
+		{false,false,false,false,false,false,false,false,false},
+		{false,false,false,false,false,false,false,false,false},
+		{false,false,false,false,false,false,false,false,false},
+		{false,false,false,false,false,false,false,false,false},
+		{false,false,false,false,false,false,false,false,false},
+		{false,false,false,false,false,false,false,false,false},
+		{false,false,false,false,false,false,false,false,false}};
+
 	public Sudoku(){
 		int sector, sector2, celda = 10000000, celda2, coorX, coorX2, coorY, coorY2;
 		boolean incons;
@@ -75,11 +97,18 @@ public class Sudoku {
 			}
 			incons = inconsistencia(sector, celda);
 			if(incons == false){
-				System.out.println("NO CAUSO INCONSISTENCIA! AQUI PONER SETVALOR(...)");
+				//System.out.println("NO CAUSO INCONSISTENCIA! AQUI PONER SETVALOR(...)");
+				setValor(sector, celda, numeroIntro);
 			}else if(incons == true){
 				System.out.println("CAUSO INCONSISTENCIA!");
 			}
 		}
+	}
+	private void setValor(int sector, int celda, int numeroIntro){
+		if(this.inicial[sector][celda] == true){
+			this.Cas[sector][celda] = numeroIntro;
+		}
+		this.utilizado[sector][celda] = true;
 	}
 	private boolean gano(){
 		int i, j;
