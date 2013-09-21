@@ -2,7 +2,6 @@ import javax.swing.*;
 //import java.util.*;
 public class Sudoku {
 	private int numeroIntro = 0;
-	//La asignación como tal no funciona a no ser que estés declarando el array, en todo caso, necesitarías establecerlo como instancia y luego llenarlo por otros medios....
 	private int [][] Cas = {{5,3,0,6,0,0,0,9,8},{0,7,0,1,9,5,0,0,0},{0,0,0,0,0,0,0,6,0},{8,0,0,4,0,0,7,0,0},{0,6,0,8,0,3,0,2,0},{0,0,3,0,0,1,0,0,6},{0,6,0,0,0,0,0,0,0},{0,0,0,4,1,9,0,8,0},{2,8,0,0,0,5,0,7,9}};//prueba!
 	//private int [][] Cas = {{5,3,1,6,1,1,1,9,8},{1,7,1,1,9,5,1,1,1},{1,1,1,1,1,1,1,6,1},{8,1,1,4,1,1,7,1,1},{1,6,1,8,1,3,1,2,1},{1,1,3,1,1,1,1,1,6},{1,6,1,1,1,1,1,1,1},{1,1,1,4,1,9,1,8,1},{2,8,1,1,1,5,1,7,9}};//para calar si gano o no
 	private boolean [][] inicial ={
@@ -36,7 +35,8 @@ public class Sudoku {
 			coorX = Integer.parseInt(JOptionPane.showInputDialog("Introduce coordenadas en X: "));
 			coorY = Integer.parseInt(JOptionPane.showInputDialog("Introduce coordenadas en Y: "));
 			numeroIntro = Integer.parseInt(JOptionPane.showInputDialog("Introduce el Numero a introducir en la coordenada (" + coorX + "," + coorY + "): "));
-			System.out.println("Coordenadas Introducidas: " + coorX + ", " + coorY);
+			System.out.print("Coordenadas Introducidas: " + coorX + ", " + coorY);
+			System.out.println(". Numero Introducido: " + numeroIntro);
 			//Cas = new Array({{5,3,0,6,0,0,0,9,8},{0,7,0,1,9,5,0,0,0},{0,0,0,0,0,0,0,6,0},{8,0,0,4,0,0,7,0,0},{0,6,0,8,0,3,0,2,0},{0,0,3,0,0,1,0,0,6},{0,6,0,0,0,0,0,0,0},{0,0,0,4,1,9,0,8,0},{2,8,0,0,0,5,0,7,9}});
 			if((coorX > 0 && coorX < 4) && (coorY > 0 && coorY < 4)){
 				sector = 0;
@@ -129,6 +129,9 @@ public class Sudoku {
 		int numero = this.numeroIntro;
 		//Dentro de su cuadro
 		for(i = 0; i < 9; i++){
+			if(numero == 0){
+				break;
+			}
 			if(Cas[sector][i] == numero){
 				System.out.println("Inconsistencia: EL NUMERO " + numero +" YA ESTA EN ESTA SECCION, INTENTA CON OTRO NUMERO.");
 				error = true;
@@ -154,6 +157,9 @@ public class Sudoku {
 		}
 		
 		for(i = sector2; i < 9; i = i + 3){//analiza verticalmente
+			if(numero == 0){
+				break;
+			}
 			for(j = celda2; j < 9; j = j + 3){
 				if(Cas[i][j] == numero){
 					error = true;
@@ -180,7 +186,7 @@ public class Sudoku {
 		}else{
 			sector2 = sector;
 		}
-		
+		celda2 = celda;
 		if(celda > 0 && celda < 3){
 			celda2 = celda - 1;
 			if(celda2 == 1){
@@ -199,6 +205,9 @@ public class Sudoku {
 		}
 		
 		for(i = sector2; i < (sector2 + 3); i++){//analiza Horizontalmente
+			if(numero == 0){
+				break;
+			}
 			for(j = celda2; j < (celda2 + 3); j++){
 				if(Cas[i][j] == numero){
 					error = true;
@@ -207,14 +216,15 @@ public class Sudoku {
 			}
 		}
 		
-		if(error == true){
+		if((error == true) && numero != 0){
 			return true;
 		}else{
 			return false;
 		}
 	}
+	
 	private void imprimeTablero(){
-		for(int i = 0; i < 3; i++){
+		for(int i = 0; i < 5; i++){
 			System.out.println("");
 		}
 		int[][] Cas = this.Cas;
