@@ -2,7 +2,10 @@ import javax.swing.*;
 //import java.util.*;
 public class Sudoku {
 	private int numeroIntro = 0;
-	private int [][] Cas = {{5,3,0,6,0,0,0,9,8},{0,7,0,1,9,5,0,0,0},{0,0,0,0,0,0,0,6,0},{8,0,0,4,0,0,7,0,0},{0,6,0,8,0,3,0,2,0},{0,0,3,0,0,1,0,0,6},{0,6,0,0,0,0,0,0,0},{0,0,0,4,1,9,0,8,0},{2,8,0,0,0,5,0,7,9}};//prueba!
+	
+	public static int [][] Cas;// = getCas();
+	
+//	public int [][] Cas = {{5,3,0,6,0,0,0,9,8},{0,7,0,1,9,5,0,0,0},{0,0,0,0,0,0,0,6,0},{8,0,0,4,0,0,7,0,0},{0,6,0,8,0,3,0,2,0},{0,0,3,0,0,1,0,0,6},{0,6,0,0,0,0,0,0,0},{0,0,0,4,1,9,0,8,0},{2,8,0,0,0,5,0,7,9}};//prueba!
 	//private int [][] Cas = {{5,3,1,6,1,1,1,9,8},{1,7,1,1,9,5,1,1,1},{1,1,1,1,1,1,1,6,1},{8,1,1,4,1,1,7,1,1},{1,6,1,8,1,3,1,2,1},{1,1,3,1,1,1,1,1,6},{1,6,1,1,1,1,1,1,1},{1,1,1,4,1,9,1,8,1},{2,8,1,1,1,5,1,7,9}};//para calar si gano o no
 	private boolean [][] inicial ={
    		{false,false,true,false,true,true,true,false,false},
@@ -27,17 +30,22 @@ public class Sudoku {
 		{false,false,false,false,false,false,false,false,false}};
 
 	public Sudoku(){
-		int sector, sector2, celda = 10000000, celda2, coorX, coorX2, coorY, coorY2;
+		int i;
+		for(i = 0; i< 8; i++){
+			Cas[i] = Casilla.getCas();
+		}
+		
+		int sector, sector2, celda = 1000000, celda2, coorX, coorX2, coorY, coorY2;
 		boolean incons;
 		while(gano() == false){
 			imprimeTablero();
+			
 			boolean error = false;
 			coorX = Integer.parseInt(JOptionPane.showInputDialog("Introduce coordenadas en X: "));
 			coorY = Integer.parseInt(JOptionPane.showInputDialog("Introduce coordenadas en Y: "));
 			numeroIntro = Integer.parseInt(JOptionPane.showInputDialog("Introduce el Numero a introducir en la coordenada (" + coorX + "," + coorY + "): "));
 			System.out.print("Coordenadas Introducidas: " + coorX + ", " + coorY);
 			System.out.println(". Numero Introducido: " + numeroIntro);
-			//Cas = new Array({{5,3,0,6,0,0,0,9,8},{0,7,0,1,9,5,0,0,0},{0,0,0,0,0,0,0,6,0},{8,0,0,4,0,0,7,0,0},{0,6,0,8,0,3,0,2,0},{0,0,3,0,0,1,0,0,6},{0,6,0,0,0,0,0,0,0},{0,0,0,4,1,9,0,8,0},{2,8,0,0,0,5,0,7,9}});
 			if((coorX > 0 && coorX < 4) && (coorY > 0 && coorY < 4)){
 				sector = 0;
 			}
@@ -302,7 +310,8 @@ public class Sudoku {
 		System.out.print("  ");
 		System.out.println((char)200 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)188 + " " + (char)200 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)188 + " " + (char)200 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)188);
 	}
+
 	public static void main(String[] args){
-		Sudoku C = new Sudoku();        
+		Sudoku C = new Sudoku();
 	}
 }
