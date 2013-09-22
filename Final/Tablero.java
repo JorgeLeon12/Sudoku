@@ -9,7 +9,6 @@ java Tablero 9 9 5 3 0 0 7 0 0 0 0 6 0 0 1 9 5 0 0 0 0 9 8 0 0 0 0 6 0 8 0 0 0 6
 public class Tablero{
 	private Casilla[][] matriz= new Casilla[9][9];
 	private int numeroIntro = 0;
-
 	
 	public Tablero(){
 		for(int i=0;i<matriz.length;i++){
@@ -407,23 +406,48 @@ public class Tablero{
 		System.out.println((char)200 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)188 + " " + (char)200 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)188 + " " + (char)200 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)188);
 	} 
 	
+	public void asignaValores(String[] valores) {
+		int cont = 0;
+		for(int i = 0; i < 9; i++){
+			for(int j = 0; j < 9; j++){			
+				this.matriz[i][j].setValor(Integer.parseInt(valores[2+cont]));
+				cont+=1;
+			}
+			System.out.println();
+		}
+	}
+
 	public static void main(String[] args){
 		Tablero a = new Tablero();
 		a.usoRandom();
-		int numeroooooooo = 1000;
-		if(args.length != 0){
-			int cont = 0;
-			for(int i = 0; i < 9; i++){
-				for(int j = 0; j < 9; j++){			
-					matriz2[i][j].setValor(Integer.parseInt(args[2+cont]));
-					//System.out.print(args[2+cont]+"\t");	
-					cont+=1;
-				}
-				System.out.println();
-			}
+		if(args.length != 0 && args.length >= 9){
+			a.asignaValores(args);
 		}else{
-			usoRandom();
+			a.usoRandom();
 		}
-		//a.imprimeTablero();
-	}	
+	}
 }
+/*
+public class changoleon {
+	private int var1; //esta variable sólo es visible dentro de los métodos de una instancia
+	static String var2; //esta variable es accesible desde main y métodos estáticos (declarados como static)
+	
+	public changoleon() {
+		//Esta función crea una instancia de la clase y es llamada por la JVM a la hora de pedir un "new"
+		//tipo private changoleon vchan = new changoleon;
+		var1 = 1;  //funciona también...
+	}
+	
+	public int hazalgo() {
+		var1 = 42; //Funciona bien... por que es accesible dentro de la instancia
+		var2 = "otra cosa"; //también debe de funcionar
+	}
+	
+	public static void main() {
+		//inicializador del programa, pero NO de la clase ni del objeto
+		private changoleon vchan = new changoleon() //Aquí se manda llamar la función "changoleon" que es el instanciador
+		var1 = 2; //error... no es accesible por que no es estática
+		var2 = "funciona"; //sí es accesible...
+		vchan.hazlago(); //manda llamar la función de la instancia...
+	}
+}*/
