@@ -1,99 +1,27 @@
 import javax.swing.*;
 import java.util.*;
-/*
-java Tablero 9 9 5 3 4 6 7 8 9 1 2 6 7 2 1 9 5 3 4 8 1 9 8 3 4 2 5 6 7 8 5 9 7 6 1 4 2 3 4 2 6 8 5 3 7 9 1 7 1 3 9 2 4 8 5 6 9 6 1 5 3 7 2 8 4 2 8 7 4 1 9 6 3 5 3 4 5 2 8 6 1 7 9
 
-java Tablero 9 9 5 3 0 0 7 0 0 0 0 6 0 0 1 9 5 0 0 0 0 9 8 0 0 0 0 6 0 8 0 0 0 6 0 0 0 3 4 0 0 8 0 3 0 0 1 7 0 0 0 2 0 0 0 6 0 6 0 0 0 0 2 8 0 0 0 0 4 1 9 0 0 5 0 0 0 0 8 0 0 7 9
+/*
+Equipo:
+~~>	Jorge Enrique Moreno León ~ A01226804
+~~>	Jered Esau Ramos ~ A0122
+	
+Var. de Prebas
+Completado
+	java Tablero 9 9 5 3 4 6 7 8 9 1 2 6 7 2 1 9 5 3 4 8 1 9 8 3 4 2 5 6 7 8 5 9 7 6 1 4 2 3 4 2 6 8 5 3 7 9 1 7 1 3 9 2 4 8 5 6 9 6 1 5 3 7 2 8 4 2 8 7 4 1 9 6 3 5 3 4 5 2 8 6 1 7 9
+
+Incompleto
+	java Tablero 9 9 5 3 0 0 7 0 0 0 0 6 0 0 1 9 5 0 0 0 0 9 8 0 0 0 0 6 0 8 0 0 0 6 0 0 0 3 4 0 0 8 0 3 0 0 1 7 0 0 0 2 0 0 0 6 0 6 0 0 0 0 2 8 0 0 0 0 4 1 9 0 0 5 0 0 0 0 8 0 0 7 9
 */
 
 public class Tablero{
 	private Casilla[][] matriz= new Casilla[9][9];
-	private int numeroIntro = 0;
+	private static int numeroIntro = 0;
 	
 	public Tablero(){
 		for(int i=0;i<matriz.length;i++){
 			for(int j=0;j<matriz[i].length;j++){
 			this.matriz[i][j]=new Casilla();
-			}
-		}
-		int sector, sector2, celda = 1000000, celda2, coorX, coorX2, coorY, coorY2;
-		boolean incons;
-
-		while(gano() == false){
-			imprimeTablero();
-			boolean error = false;
-			coorX = Integer.parseInt(JOptionPane.showInputDialog("Introduce coordenadas en X: "));
-			coorY = Integer.parseInt(JOptionPane.showInputDialog("Introduce coordenadas en Y: "));
-			numeroIntro = Integer.parseInt(JOptionPane.showInputDialog("Introduce el Numero a introducir en la coordenada (" + coorX + "," + coorY + "): "));
-			System.out.print("Coordenadas Introducidas: " + coorX + ", " + coorY);
-			System.out.println(". Numero Introducido: " + numeroIntro);
-			if((coorX > 0 && coorX < 4) && (coorY > 0 && coorY < 4)){
-				sector = 0;
-			}
-			else if((coorX > 3 && coorX < 7) && (coorY > 0 && coorY < 4)){
-				sector = 1;
-			}
-			else if((coorX > 6 && coorX < 10) && (coorY > 0 && coorY < 4)){
-				sector = 2;
-			}
-			else if((coorX > 0 && coorX < 4) && (coorY > 3 && coorY < 7)){
-				sector = 3;
-			}
-			else if((coorX > 3 && coorX < 7) && (coorY > 3 && coorY < 7)){
-				sector = 4;
-			}
-			else if((coorX > 6 && coorX < 10) && (coorY > 3 && coorY < 7)){
-				sector = 5;
-			}
-			else if((coorX > 0 && coorX < 4) && (coorY > 6 && coorY < 10)){
-				sector = 6;
-			}
-			else if((coorX > 3 && coorX < 7) && (coorY > 6 && coorY < 10)){
-				sector = 7;
-			}
-			else if((coorX > 6 && coorX < 10) && (coorY > 6 && coorY < 10)){
-				sector = 8;
-			}
-			else{
-				System.out.print("Error! Numero Invalido!");
-				sector = 9;
-			}
-			
-			if(coorX > 3){
-					coorX2 = coorX - 3;
-				if(coorX2 > 3){
-					coorX2 = coorX2 - 3;
-				}
-			}else{
-				coorX2 = coorX;
-			}
-			
-			if(coorY > 3){
-				coorY2 = coorY - 3;
-				if(coorY2 > 3){
-					coorY2 = coorY2 - 3;
-				}
-			}else{
-				coorY2 = coorY;
-			}
-			
-			if(coorY2 == 1){
-				celda = coorX2 - 1;
-			}else if(coorY2 == 2){
-				celda = coorX2 + 2;
-			}else if(coorY2 == 3){
-				celda = coorX2 + 5;
-			}
-			
-			System.out.println("");
-			incons = inconsistencia(sector, celda);
-			if(incons == false){
-				//System.out.println("NO CAUSO INCONSISTENCIA! AQUI PONER SETVALOR(...)");
-				setValor(sector, celda, numeroIntro);
-			}else if(incons == true){
-				System.out.println("");
-				System.out.println("CAUSO INCONSISTENCIA! HAZ PERDIDO EL JUEGO! D=");
-				break;
 			}
 		}
 	}
@@ -107,6 +35,8 @@ public class Tablero{
 				}
 			}
 		}
+		imprimeTablero();
+		System.out.println("");
 		System.out.println("GANASTE! SUDOKU COMPLETADO!!!");
 		return true;
 	}
@@ -214,10 +144,8 @@ public class Tablero{
 	private boolean setValor(int sector, int celda, int numeroIntro){
 		if(this.matriz[sector][celda].getInicial() == false){
 			this.matriz[sector][celda].setValor(numeroIntro);
-		//	this.matriz[sector][celda].setValor();
 			return true;
 		}
-		//this.utilizado[sector][celda] = true;
 		return false;
 	}
 	
@@ -327,7 +255,7 @@ public class Tablero{
 	}
 	
 	public void imprimeTablero() {
-		for(int i = 0; i < 5; i++){
+		for(int i = 0; i < 15; i++){
 			System.out.println("");
 		}
 
@@ -404,50 +332,123 @@ public class Tablero{
 		(this.matriz[8][6].getValor()==0?(" "):this.matriz[8][6].getValor())  + " " + (char)186 + " " + (this.matriz[8][7].getValor()==0?(" "):this.matriz[8][7].getValor())  + " " + (char)186 + " " + (this.matriz[8][8].getValor()==0?(" "):this.matriz[8][8].getValor())  + " " + (char)186);
 		System.out.print("  ");
 		System.out.println((char)200 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)188 + " " + (char)200 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)188 + " " + (char)200 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)202 + "" + (char)205 + "" + (char)205 + "" + (char)205 + "" + (char)188);
-	} 
+	}
 	
 	public void asignaValores(String[] valores) {
 		int cont = 0;
 		for(int i = 0; i < 9; i++){
-			for(int j = 0; j < 9; j++){			
-				this.matriz[i][j].setValor(Integer.parseInt(valores[2+cont]));
-				cont+=1;
+			for(int j = 0; j < 9; j++){
+				if((Integer.parseInt(valores[2+cont])) != 0){
+					this.matriz[i][j]=new Casilla((Integer.parseInt(valores[2+cont])),true);// aquí se tiene que poner true
+
+				}
+				cont++;
 			}
-			System.out.println();
 		}
 	}
-
+	
 	public static void main(String[] args){
 		Tablero a = new Tablero();
-		a.usoRandom();
-		if(args.length != 0 && args.length >= 9){
+		
+		for(int l = 0; l < 60; l++){
+			System.out.println("");
+		}
+		System.out.println("Sudoku!");
+		System.out.println("");
+		System.out.println("Informacion:");
+		System.out.println("");
+		System.out.print("Se puede jugar introduciendo datos con ARGS (primeros dos digitos deben de ser '9', ejemplo: java Tablero 9 9 [...]) ");
+		System.out.println("o simplemente corriendolo para generar un Sudoku NUEVO automaticamente.");
+		System.out.println("");
+		System.out.println("Primero introduce la Coordenada en 'X', despues en 'Y' y para terminar, el numero deseado.");
+		
+		if(args.length != 0){
 			a.asignaValores(args);
 		}else{
 			a.usoRandom();
 		}
+		
+		int sector, sector2, celda = 1000000, celda2, coorX, coorX2, coorY, coorY2;
+		boolean incons;
+		
+		boolean gano = false;
+		int i, j;
+		while(gano == false){		
+			a.imprimeTablero();
+			boolean error = false;
+			coorX = Integer.parseInt(JOptionPane.showInputDialog("Introduce coordenadas en X: "));
+			coorY = Integer.parseInt(JOptionPane.showInputDialog("Introduce coordenadas en Y: "));
+			numeroIntro = Integer.parseInt(JOptionPane.showInputDialog("Introduce el Numero a introducir en la coordenada (" + coorX + "," + coorY + "): "));
+			System.out.print("Coordenadas Introducidas: " + coorX + ", " + coorY);
+			System.out.println(". Numero Introducido: " + numeroIntro);
+			if((coorX > 0 && coorX < 4) && (coorY > 0 && coorY < 4)){
+				sector = 0;
+			}
+			else if((coorX > 3 && coorX < 7) && (coorY > 0 && coorY < 4)){
+				sector = 1;
+			}
+			else if((coorX > 6 && coorX < 10) && (coorY > 0 && coorY < 4)){
+				sector = 2;
+			}
+			else if((coorX > 0 && coorX < 4) && (coorY > 3 && coorY < 7)){
+				sector = 3;
+			}
+			else if((coorX > 3 && coorX < 7) && (coorY > 3 && coorY < 7)){
+				sector = 4;
+			}
+			else if((coorX > 6 && coorX < 10) && (coorY > 3 && coorY < 7)){
+				sector = 5;
+			}
+			else if((coorX > 0 && coorX < 4) && (coorY > 6 && coorY < 10)){
+				sector = 6;
+			}
+			else if((coorX > 3 && coorX < 7) && (coorY > 6 && coorY < 10)){
+				sector = 7;
+			}
+			else if((coorX > 6 && coorX < 10) && (coorY > 6 && coorY < 10)){
+				sector = 8;
+			}
+			else{
+				System.out.print("Error! Numero Invalido!");
+				sector = 9;
+			}
+			
+			if(coorX > 3){
+					coorX2 = coorX - 3;
+				if(coorX2 > 3){
+					coorX2 = coorX2 - 3;
+				}
+			}else{
+				coorX2 = coorX;
+			}
+			
+			if(coorY > 3){
+				coorY2 = coorY - 3;
+				if(coorY2 > 3){
+					coorY2 = coorY2 - 3;
+				}
+			}else{
+				coorY2 = coorY;
+			}
+			
+			if(coorY2 == 1){
+				celda = coorX2 - 1;
+			}else if(coorY2 == 2){
+				celda = coorX2 + 2;
+			}else if(coorY2 == 3){
+				celda = coorX2 + 5;
+			}
+			
+			System.out.println("");
+			incons = a.inconsistencia(sector, celda);
+			if(incons == false){
+				a.setValor(sector, celda, numeroIntro);
+			}else if(incons == true){
+				System.out.println("");
+				System.out.println("CAUSO INCONSISTENCIA! HAZ PERDIDO EL JUEGO! D=");
+				break;
+			}
+			gano = a.gano();
+		}
 	}
 }
-/*
-public class changoleon {
-	private int var1; //esta variable sólo es visible dentro de los métodos de una instancia
-	static String var2; //esta variable es accesible desde main y métodos estáticos (declarados como static)
-	
-	public changoleon() {
-		//Esta función crea una instancia de la clase y es llamada por la JVM a la hora de pedir un "new"
-		//tipo private changoleon vchan = new changoleon;
-		var1 = 1;  //funciona también...
-	}
-	
-	public int hazalgo() {
-		var1 = 42; //Funciona bien... por que es accesible dentro de la instancia
-		var2 = "otra cosa"; //también debe de funcionar
-	}
-	
-	public static void main() {
-		//inicializador del programa, pero NO de la clase ni del objeto
-		private changoleon vchan = new changoleon() //Aquí se manda llamar la función "changoleon" que es el instanciador
-		var1 = 2; //error... no es accesible por que no es estática
-		var2 = "funciona"; //sí es accesible...
-		vchan.hazlago(); //manda llamar la función de la instancia...
-	}
-}*/
