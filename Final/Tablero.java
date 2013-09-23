@@ -4,7 +4,7 @@ import java.util.*;
 /*
 Equipo:
 ~~>	Jorge Enrique Moreno León ~ A01226804
-~~>	Jered Esau Ramos ~ A0122
+~~>	Jered Esau Ramos ~ A01226218
 	
 Var. de Prebas
 Completado
